@@ -1,14 +1,16 @@
 class Solution {
     public int[] buildArray(int[] nums) {
 
-        int length = nums.length;
-        int arr[] = new int[length];
-
-        for(int i=0; i<length; i++){
-            arr[i] = nums[nums[i]];
+        // why - (nums[nums[i]]%1000) - if woh element already 1000 se plus howa para to remainder se correct nikaal lena
+        for(int i=0; i<nums.length; i++){
+            nums[i] += 1000 * (nums[nums[i]]%1000);
         }
 
-        return arr;
+         for (int i = 0; i < nums.length; i++) {
+            nums[i] /= 1000;
+        }
+        return nums;
+
         
     }
 }
