@@ -10,14 +10,14 @@ class Solution {
 
         for(int i=0; i<words.length; i++){
 
-            Boolean skip = false;
+            Boolean ok = true;
             for(Character ch: words[i].toCharArray()){
                 if(!map.containsKey(ch)){
-                    skip = true;
+                    ok = false;
                     break;
                 }
             }
-            if(!skip){
+            if(ok){
                 count++;
             }
 
