@@ -1,35 +1,38 @@
 class MyQueue {
 
-    Deque<Integer> deq1;
-    Deque<Integer> deq2;
+    Stack<Integer> stack;
 
 
     public MyQueue() {
-        this.deq1 = new ArrayDeque<>();
-        this.deq2 = new ArrayDeque<>();
-
+        this.stack = new Stack<>();
     }
     
     public void push(int x) {
-        while (!deq1.isEmpty()){
-            deq2.offerFirst(deq1.pollFirst());
-        }
-        deq1.offerFirst(x);
-        while (!deq2.isEmpty()){
-            deq1.offerFirst(deq2.pollFirst());
-        }
+        insertAtBottom(x);
     }
-    
+    private void insertAtBottom(int x){
+
+        if(stack.isEmpty()){
+            stack.push(x);
+            return;
+        }
+
+        int top = stack.pop();
+        insertAtBottom(x);
+        stack.push(top);
+
+
+    }
     public int pop() {
-        return deq1.pollFirst();
+        return stack.pop();
     }
     
     public int peek() {
-        return deq1.peekFirst();
+        return stack.peek();
     }
     
     public boolean empty() {
-        return deq1.isEmpty();
+        return stack.isEmpty();
     }
 }
 
